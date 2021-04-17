@@ -1,0 +1,129 @@
+{
+  "name": "node-red-contrib-modbus",
+  "version": "5.2.0",
+  "description": "The all in one Modbus TCP and Serial contribution package for Node-RED.",
+  "dependencies": {
+    "@xstate/fsm": "1.1.0",
+    "basic-ftp": "^4.6.3",
+    "bson": "4.0.2",
+    "cors": "^2.8.5",
+    "debug": "4.1.1",
+    "jsmodbus": "4.0.0",
+    "line-by-line": "0.1.6",
+    "modbus-rtu": "^0.2.1",
+    "modbus-serial": "7.7.4",
+    "puppeteer": "^5.5.0",
+    "redis": "^3.0.2",
+    "socket.io": "^3.0.3",
+    "source-map-support": "0.5.16",
+    "vm2": "3.8.4"
+  },
+  "optionalDependencies": {
+    "serialport": "8.0.5",
+    "@serialport/list": "8.0.4"
+  },
+  "keywords": [
+    "node-red",
+    "modbus",
+    "automation",
+    "iiot",
+    "biancoroyal"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biancoroyal/node-red-contrib-modbus.git"
+  },
+  "node-red": {
+    "nodes": {
+      "Modbus-Client": "modbus/modbus-client.js",
+      "Modbus-Response": "modbus/modbus-response.js",
+      "Modbus-Read": "modbus/modbus-read.js",
+      "Modbus-Getter": "modbus/modbus-getter.js",
+      "Modbus-Flex-Getter": "modbus/modbus-flex-getter.js",
+      "Modbus-Write": "modbus/modbus-write.js",
+      "Modbus-Flex-Write": "modbus/modbus-flex-write.js",
+      "Modbus-Server": "modbus/modbus-server.js",
+      "Modbus-Flex-Server": "modbus/modbus-flex-server.js",
+      "Modbus-Queue-Info": "modbus/modbus-queue-info.js",
+      "Modbus-Flex-Connector": "modbus/modbus-flex-connector.js",
+      "Modbus-IO-Config": "modbus/modbus-io-config.js",
+      "Modbus-Response-Filter": "modbus/modbus-response-filter.js"
+    }
+  },
+  "author": "Klaus Landsdorf <klaus.landsdorf@bianco-royal.de>",
+  "license": "BSD-3-Clause",
+  "main": "node",
+  "files": [
+    "docs",
+    "examples",
+    "modbus",
+    "supporter.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/biancoroyal/node-red-contrib-modbus/issues/"
+  },
+  "homepage": "https://biancode.github.io/node-red-contrib-modbus/",
+  "scripts": {
+    "test": "standard --fix && mocha test/* --reporter dot --timeout 5000",
+    "test-with-coverage": "istanbul cover _mocha --report lcovonly -- --recursive --timeout 5000 -R spec && cat ./coverage/lcov.info | codacy-coverage --token a047b284d2124df78f999c27ae874e9c && rm -rf ./coverage",
+    "coverage": "standard --fix && gulp build && npm test && istanbul cover _mocha -- --recursive --timeout 5000",
+    "build": "standard --fix && gulp",
+    "prepublishOnly": "standard --fix && npm run build && npm test && mocha test --recursive --timeout 5000 --reporter dot",
+    "ci-publish": "ci-publish",
+    "release": "standard-version -a",
+    "rewrite-changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "postinstall": "node ./supporter.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@node-red/nodes": "^1.0.2",
+    "chai": "^4.2.0",
+    "codacy-coverage": "^3.4.0",
+    "conventional-changelog-cli": "^2.0.27",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-jsdoc3": "^2.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "istanbul": "0.4.5",
+    "jasmine-node": "^3.0.0",
+    "js-beautify": "^1.10.2",
+    "mocha": "^6.2.2",
+    "nock": "^11.7.0",
+    "node-red": "^1.0.3",
+    "node-red-node-test-helper": "^0.2.3",
+    "pump": "^3.0.0",
+    "should": "^13.2.3",
+    "sinon": "^7.5.0",
+    "standard": "^14.3.1",
+    "standard-version": "^7.0.0",
+    "supertest": "^4.0.2",
+    "uglify-js": "^3.6.9",
+    "uglify-js-harmony": "^2.7.7",
+    "when": "^3.7.8"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "standard": {
+    "ignore": [
+      "code/",
+      "node_modules/",
+      "examples/",
+      "modbus/",
+      "docs",
+      "test",
+      "extras"
+    ]
+  }
+}
